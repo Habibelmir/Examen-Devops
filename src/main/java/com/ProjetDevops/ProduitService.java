@@ -73,7 +73,13 @@ public class ProduitService
 		}
 	}
 
-	
-
+	public void DeleteProduit(Produit p) throws ProduitNoExist
+	{
+		if(isExist(p.getId(),p.getNom()))
+		{
+				throw new ProduitNoExist("Ce produit exist deja");
+		}
+		listProduit.removeIf(produit->produit.getId() == p.getId());
+	}
 
 }
