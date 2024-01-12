@@ -42,5 +42,17 @@ public class ProduitService
 			throw new InfoInvalide("Information non valider vous devez entrer des donnée positifs");
 		}
 	}
-
+	
+	public Produit ReadProduit(long id) throws IdNotFoundException
+	{
+		for(Produit produit: listProduit) 
+		{
+			if(produit.getId() == id) 
+			{
+				return produit;
+			}
+		}
+		throw new IdNotFoundException("Aucun produit avec l'id : "+id);
+	}
+	
 }
