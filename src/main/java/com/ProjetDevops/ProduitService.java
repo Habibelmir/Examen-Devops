@@ -13,17 +13,17 @@ public class ProduitService
     }
 
 	
-	public void Addproduit(Produit p) throws ProduitExist, InfoInvalide
+	public void Createproduit(Produit p) throws ProduitNoExist, InfoInvalide
 	{
-		if(ProduitExist(p.getId(),p.getNom()))
+		if(isExist(p.getId(),p.getNom()))
 		{
-				throw new ProduitExist("Ce produit exist deja");
+				throw new ProduitNoExist("Ce produit exist deja");
 		}
-		ValiderInfo(p.getPrix(),p.getQuantite());
+		ValideInfo(p.getPrix(),p.getQuantite());
 		listProduit.add(p);
 	}
 	
-	public boolean ProduitExist(long id,String nom) 
+	public boolean isExist(long id,String nom) 
 	{
 		for(int i=0;i<listProduit.size();i++) 
 		{
@@ -35,7 +35,7 @@ public class ProduitService
 		return false;
 	}
 	
-	public void ValiderInfo(double prix,int qt) throws InfoInvalide
+	public void ValideInfo(double prix,int qt) throws InfoInvalide
 	{
 		if(prix <= 0 || qt <= 0) 
 		{
