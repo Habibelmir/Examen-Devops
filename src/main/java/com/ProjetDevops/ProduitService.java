@@ -54,5 +54,26 @@ public class ProduitService
 		}
 		throw new IdNotFoundException("Aucun produit avec l'id : "+id);
 	}
+
+	public void UpdateProduit(Produit p) throws ProduitNoExist, InfoInvalide
+	{
+		if(isExist(p.getId(),p.getNom()))
+		{
+				throw new ProduitNoExist("Ce produit exist deja");
+		}
+		
+		ValideInfo(p.getPrix(),p.getQuantite());
+		
+		for(int i=0;i<listProduit.size();i++) 
+		{
+			if(p.getId() == listProduit.get(i).getId()) 
+			{
+				listProduit.set(i, p);
+			}
+		}
+	}
+
 	
+
+
 }
